@@ -1,7 +1,19 @@
 {
+  "name": "obs-stream-start-to-telegram",
+  "version": "1",
+  "description": "",
+  "author": "cjb-tech",
+  "type": "module",
+  "main": "index.js",
+  "bin": "script.js",
+  "scripts": {
+    "start": "node index"
+  },
   "dependencies": {
     "appdata-path": "^1.0.0",
     "config.ini": "^0.0.60",
-    "obs-websocket-js": "^4.0.2"
+    "node-fetch": "^3.3.2",
+    "obs-websocket-js": "^4.0.2",
+    "open": "^10.1.0"
   }
 }
