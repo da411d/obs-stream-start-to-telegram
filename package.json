@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "appdata-path": "^1.0.0",
+    "config.ini": "^0.0.60",
+    "obs-websocket-js": "^4.0.2"
+  }
+}
