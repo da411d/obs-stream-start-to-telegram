@@ -13,39 +13,34 @@ const obs = new OBSWebSocket();
 try {
 	await obs.connect({"secure": false});
 	
-	obs.on("StreamStarted", ()=> {
-		onStreamStarted()
-	});	
+	obs.on("StreamStarted", onStreamStarted);	
 
 } catch(e){ 
 	console.log("error");
 	console.error(e);
 }
-function onStreamStarted() {
+async function onStreamStarted() {
 
-	(async function(){
-		try {
-			let currentStream = null;
-			let tries = 0;
-			do {
-				if(tries > 0) {
-					await sleep(5000);
-				}
-				currentStream = await getCurrentStream();
-				tries++;
-			} while(currentStream == null && tries <= 10);
-			if(currentStream == null) {
-				console.log("Stream is not live")
-				return
-			}
-			console.log(currentStream);
-			await sendMessage(currentStream);
-				
-		} catch(e) {
-			console.log("Error handling onStreamStarted");
-			console.error(e);
+    try {
+	let currentStream = null;
+	let tries = 0;
+	do {
+		if(tries > 0) {
+			await sleep(5000);
 		}
-	})();
+		currentStream = await getCurrentStream();
+		tries++;
+	} while(currentStream == null && tries <= 10);
+	if(currentStream == null) {
+		console.log("Stream is not live")
+		return
+	}
+	console.log(currentStream);
+	await sendMessage(currentStream);
+    } catch(e) {
+        console.log("Error handling onStreamStarted");
+	console.error(e);
+    }
 
 }
 
